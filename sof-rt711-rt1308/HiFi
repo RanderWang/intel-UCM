@@ -1,0 +1,164 @@
+# Use case Configuration for skl-hda-card
+
+SectionVerb {
+
+	EnableSequence [
+		cdev "hw:sofrt711rt1308"
+		cset "name='PGA1.0 1 Master Playback Volume' 80"
+                cset "name='DAC L Switch' 1"
+                cset "name='DAC R Switch' 1"
+		cset "name='ADC 23 Mux' 'MIC2'"
+		cset "name='ADC 08 Capture Volume' 63"
+		cset "name='ADC 08 Capture Switch' 1"
+		cset "name='AMIC Volume' 1"
+		
+	]
+
+	DisableSequence [
+		cdev "hw:sofrt711rt1308"
+	]
+}
+
+SectionDevice."Speaker" {
+        Comment "Speaker"
+
+	ConflictingDevice [
+	#	"Headphone"
+	]
+
+        Value {
+		PlaybackPCM "hw:sofrt711rt1308,2"
+		PlaybackChannels "2"
+		#JackHWMute "Headphone"
+        }
+}
+
+
+SectionDevice."Headphone" {
+	Comment "Headphone"
+
+	ConflictingDevice [
+	#	"Speaker"
+	]
+	
+	Value {
+		PlaybackPCM "hw:sofrt711rt1308,0"
+		PlaybackChannels "2"
+	#	JackHWMute "Speaker"
+		JackDev "sof-sdw-rt711-1308 Headset Jack"
+		JackControl "Headphone Jack"
+	}
+}
+
+SectionDevice."Microphone" {
+	Comment "Headset Mic"
+
+	Value {
+		CapturePCM "hw:sofrt711rt1308,1"
+		CaptureChannels "2"
+#		JackDev "sof-sdw-rt711-1308-715 Headset Jack"
+		JackControl "Headset Mic Jack"
+	}
+}
+
+SectionDevice."Dmic" {
+	Comment "Digital Micrphone"
+
+	Value {
+		CapturePCM "hw:sofrt711rt1308,3"
+		CaptureChannels "4"
+	}
+}
+
+SectionDevice."HDMI1" {
+        Comment "HDMI1/DP1 Output"
+
+        ConflictingDevice [
+                # "Headset"
+        ]
+
+        EnableSequence [
+                cdev "hw:sofrt711rt1308"
+        ]
+
+        DisableSequence [
+                cdev "hw:sofrt711rt1308"
+        ]
+
+        Value {
+                PlaybackPCM "hw:sofrt711rt1308,5"
+                PlaybackChannels "2"
+                JackControl "HDMI/DP,pcm=5 Jack"
+                # JackHWMute "Headset"
+        }
+}
+
+SectionDevice."HDMI2" {
+        Comment "HDMI2/DP2 Output"
+
+        ConflictingDevice [
+                # "Headset"
+        ]
+
+        EnableSequence [
+                cdev "hw:sofrt711rt1308"
+        ]
+
+        DisableSequence [
+                cdev "hw:sofrt711rt1308"
+        ]
+
+        Value {
+                PlaybackPCM "hw:sofrt711rt1308,6"
+                PlaybackChannels "2"
+                JackControl "HDMI/DP,pcm=6 Jack"
+                # JackHWMute "Headset"
+        }
+}
+
+SectionDevice."HDMI3" {
+        Comment "HDMI3/DP3 Output"
+
+        ConflictingDevice [
+                # "Headset"
+        ]
+
+        EnableSequence [
+                cdev "hw:sofrt711rt1308"
+        ]
+
+        DisableSequence [
+                cdev "hw:sofrt711rt1308"
+        ]
+
+        Value {
+                PlaybackPCM "hw:sofrt711rt1308,7"
+                PlaybackChannels "2"
+                JackControl "HDMI/DP,pcm=7 Jack"
+                # JackHWMute "Headset"
+        }
+}
+
+SectionDevice."HDMI4" {
+        Comment "HDMI4/DP4 Output"
+
+        ConflictingDevice [
+                # "Headset"
+        ]
+
+        EnableSequence [
+                cdev "hw:sofrt711rt1308"
+        ]
+
+        DisableSequence [
+                cdev "hw:sofrt711rt1308"
+        ]
+
+        Value {
+                PlaybackPCM "hw:sofrt711rt1308,8"
+                PlaybackChannels "2"
+                JackControl "HDMI/DP,pcm=8 Jack"
+                # JackHWMute "Headset"
+        }
+}
+
